@@ -16,3 +16,10 @@ This project uses python3. A pip requirements.txt file is included to install th
 
 - Add an new entity called `Author` with a `firstName` and a `lastName`. An API user should be able to create a new `Author`, edit an existing one and list all existing ones.
 - Update the `Article` entity so that it relates to an `Author`. An API user should now be able to select an `Author` when creating or editing an `Article`.
+
+## Project Structure Notes
+
+- The database models are stored in the `techtest/models` folder
+- The routes of the Flask app are in `techtest/routes` folder
+
+In both cases, the modules are loaded by using the `__all__` variable in `__init__.py`, so be sure to update this if you add new files.
