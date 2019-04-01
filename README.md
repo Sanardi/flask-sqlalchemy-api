@@ -29,7 +29,7 @@ To check we are on the right Python version
 
 - You can install the dependencies with `pip install -r requirements.txt`
 
-- You should run 'python setup_and_seed.py' to get a local database setup and seeded with lookup data
+- You should run `python setup_and_seed.py` to get a local database setup and seeded with lookup data
 
 - You can then run the app with `flask run` or `python app.py` in the root directory
 
