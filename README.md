@@ -35,7 +35,6 @@ To check we are on the right Python version
 
 ## Provided Extras
 - A sample Dockerfile is provided that will run the application in an isolated environment
-- A postman collection is provided in `flask-tech-test.postman_collection.json` that contains List/Create/Read/Update/Delete samples.
 
 ## Tasks
 
