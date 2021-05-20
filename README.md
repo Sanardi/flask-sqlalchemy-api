@@ -55,3 +55,4 @@ In both cases, the modules are loaded by using the `__all__` variable in `__init
 
 - Add an new entity called `Author` with a `first_name` and a `last_name`. An API user should be able to create a new `Author`, edit an existing one and list all existing ones.
 - Update the `Article` entity so that it relates to an `Author`. An API user should now be able to select an `Author` when creating or editing an `Article`.
+- write unit tests to check that the new routes you created for `Author` are automically tested.
