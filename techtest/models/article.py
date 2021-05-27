@@ -15,6 +15,13 @@ _article_region_table = Table(
 )
 
 
+_article_author_table = Table(
+    'article_author',
+    BaseModel.metadata,
+    Column('article_id', Integer, ForeignKey('article.id')),
+    Column('author_id', Integer, ForeignKey('author.id')),
+)
+
 class Article(BaseModel):
     __tablename__ = 'article'
 
@@ -39,4 +46,10 @@ class Article(BaseModel):
     regions = relationship(
         'Region',
         secondary=_article_region_table,
+    )
+
+
+    authors = relationship(
+        'Author',
+        secondary=_article_author_table,
     )

@@ -19,6 +19,19 @@ def add_regions_to_article(article, region_ids, session):
 
     article.regions = regions
 
+@db_session_wrap
+def add_authors_to_article(article, author_ids, session):
+    author_query = session.query(
+        Author,
+    ).filter(
+        Author.id.in_(author_ids),
+    )
+    authors = author_query.all()
+    if len(author_ids) != len(authors):
+        raise Exception('One or more authors don\'t exist')
+
+    article.authors = authors
+
 
 @app.route('/articles', methods=['GET'])
 @db_session_wrap
@@ -39,13 +52,13 @@ def create_article(session):
     request_data = request.get_json()
     article = Article.fromdict(Article(), request_data)
     session.add(article)
-    session.flush()
+    #session.flush()
     if 'regions' in request_data:
         add_regions_to_article(
             article, [x['id'] for x in request_data['regions']],
             session=session,
         )
-
+    session.flush()
     return jsonify(article.asdict(follow=['regions']))
 
 

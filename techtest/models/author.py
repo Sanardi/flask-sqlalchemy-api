@@ -6,8 +6,8 @@ from sqlalchemy import Text
 from techtest.connector import BaseModel
 
 
-class Region(BaseModel):
-    __tablename__ = 'region'
+class Author(BaseModel):
+    __tablename__ = 'author'
 
     id = Column(
         Integer,
