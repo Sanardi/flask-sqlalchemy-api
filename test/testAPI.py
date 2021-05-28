@@ -1,10 +1,7 @@
-import regex as re
-import random
 import urllib.request
 import urllib.parse, urllib.error
 import time;
 from random import randint
-import pandas as pd
 import requests
 import json
 from datetime import date, timedelta, datetime
@@ -16,39 +13,35 @@ class TestAPI:
         Authors, Regions'''
     
     
-    def __init__(self, url = "http://161.35.201.165:5555/articles/1", title = "Sample Article", article = "Hello, this is a test"):
+    def __init__(self, url = "http://161.35.201.165:5555/articles", title = "Sample Article", article = "Hello, this is a test"):
         
         self.url = url
         #self.request_payload = {"article":article, "region":region}
-        self.request_payload = {'title': title , 'content': article, 'regions': "antartica"}
+        self.request_payload = {'title': title , 'content': article}
         #self.request_payload = {'title': title , 'content': article}
         
         
     def _post_request(self):
-     
-        try:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+        try:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
             r = requests.post(self.url, json=self.request_payload)
-            print(r.status_code)
+            return r.status_code
             
-            asjson = r.text
-            return asjson
      
         except (urllib.error.HTTPError, urllib.error.URLError) as e:
             print(e)
+        
             
         
     def _get_request(self):
-     
-        try:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+
+        try:
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
             user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0'
             headers={'User-Agent':user_agent} 
         
             r = requests.get(self.url)
-            print(r.status_code)
-            
-            asjson = r.text 
-            return asjson
-     
+            return r.status_code
+
         except (urllib.error.HTTPError, urllib.error.URLError) as e:
             print(e)
             print(traceback.print_exc())
@@ -59,17 +52,9 @@ class TestAPI:
         response = {}
         
         try:
-            asjson = self._get_request()
-            
-            asdict = json.loads(asjson)
-            print(asdict)
-            asdict["response_time"] = r.elapsed.total_seconds()
-            print(asdict)
-            #df = pd.DataFrame(asdict)
-            #df["name"] = df["tokens"].str.get("name")
-            #df_attributes = df["tokens"].str.get("attributes")
-            #df["color"] = df["hash_info"].str.get('color')
-            return asdict
+            response = self._get_request()
+            print(response)
+            return response
 
         except Exception as e:
             print(e)
